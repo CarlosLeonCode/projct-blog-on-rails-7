@@ -1,24 +1,3 @@
-# README
+# Features Rails 7
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- data: { turbo_confirm: "Are you sure?" }: Before rails 7 it was with *data: { confirm: 'Are you sure?' }*

@@ -1,4 +1,5 @@
 class BlogPostsController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
   before_action :blog_post, only: %i[show edit update destroy]
   
   def index 
@@ -49,4 +50,9 @@ class BlogPostsController < ApplicationController
   def blog_post_params
     params.require(:blog_post).permit(:title, :body)
   end
+
+  # What authenticate_user method does
+  # def authenticate_user!
+  #   redirect_to new_user_session_path, alert: "You must sign in to continue!" unless user_signed_in?
+  # end
 end

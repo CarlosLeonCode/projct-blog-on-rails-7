@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
 
   resources :blog_posts
 =begin
@@ -15,5 +16,5 @@ Rails.application.routes.draw do
   # blog_post_path(:id) -> "/blog_post/1"
   # blog_post_url(:id)  -> "https://localhost:3000/blog_post/1"
 =end
-
+  root "blog_posts#index"
 end
