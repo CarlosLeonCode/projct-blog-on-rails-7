@@ -1,31 +1,116 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ProjctBlogOnRails7</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+    <title>Blog on Rails 7</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <%= csrf_meta_tags %> 
+    <%= csp_meta_tag %> 
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %> 
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %> 
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> <%= javascript_importmap_tags %>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"
+    ></script>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    
-    <div class="prose mx-auto">
-      <% if user_signed_in? %>
-        <%#= link_to "Profile", edit_user_registration_path %>
-        <%= button_to "Log out", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to "Login", new_user_session_path %>
-        <%#= link_to "Sign up", new_user_registration_path %>
-      <% end %>
+    <% if notice %>
+    <div role="alert" class="absolute top-6 right-3 w-1/2 rounded border-s-4 border-green-500 bg-green-50 p-4 z-50">
+      <strong class="block font-medium text-green-800"> Awesome! </strong>
+      <p class="mt-2 text-sm text-green-700">
+        <%= notice %>
+      </p>
     </div>
-    <%= yield %>
+    <% end %>
+
+    <% if alert %>
+    <div role="alert" class="absolute top-6 right-3 w-1/2 rounded border-s-4 border-red-500 bg-red-50 p-4 z-50">
+      <strong class="block font-medium text-red-800"> Ooops! </strong>
+      <p class="mt-2 text-sm text-red-700">
+        <%= alert %>
+      </p>
+    </div>
+    <% end %>
+
+    <nav class="bg-gray-800">
+      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="relative flex h-16 items-center justify-between">
+          <div
+            class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+          >
+            <div class="hidden sm:ml-6 sm:block">
+              <div class="flex space-x-4">
+                <%= link_to "Home", root_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"%>
+                <% if user_signed_in? %> 
+                  <%#= link_to "Profile", edit_user_registration_path %> 
+                  <%= link_to "New post", new_blog_post_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
+                  <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
+                <% else %> 
+                  <%= link_to "Login", new_user_session_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %> 
+                  <%#= link_to "Sign up", new_user_registration_path,  %> 
+                <% end %>
+              </div>
+
+            </div>
+          </div>
+          <div
+            class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+          >
+            <!-- Profile dropdown -->
+            <div class="relative ml-3">
+              <div>
+                <span class="absolute -inset-1.5"></span>
+                <span class="sr-only">Open user menu</span>
+                <img
+                  class="h-10 w-10 rounded-full object-fit"
+                  src="https://plus.unsplash.com/premium_photo-1720922580179-14c3508a8299?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu, show/hide based on menu state. -->
+      <div class="sm:hidden" id="mobile-menu">
+        <div class="space-y-1 px-2 pb-3 pt-2">
+          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+          <a
+            href="#"
+            class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+            aria-current="page"
+            >Dashboard</a
+          >
+          <a
+            href="#"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            >Team</a
+          >
+          <a
+            href="#"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            >Projects</a
+          >
+          <a
+            href="#"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            >Calendar</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <section class="px-10 py-6 mx-auto grid grid-cols-12">
+      <div class="col-span-2"></div>
+      <div class="col-span-8 mt-12">
+        <%= yield %>
+      </div>
+      <div class="col-span-2"></div>
+    </section>
   </body>
 </html>

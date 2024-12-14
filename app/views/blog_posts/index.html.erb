@@ -1,10 +1,43 @@
-My blogposts
+<h3 class="my-3 uppercase">Posts</h3>
 
 <% @blog_posts.each do |post| %>
-  <div class="div">
-    <h3>
-      <%= link_to post.title, post %>
-    </h3>
-    <%= post.content %>
-  </div>
+  <article class="flex bg-white transition hover:shadow-xl p-6">
+    <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
+      <time
+        datetime="2022-10-10"
+        class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
+      >
+        <span><%= post.created_at.year %></span>
+        <span class="w-px flex-1 bg-gray-900/10"></span>
+        <span><%= post.created_at.strftime("%B")[0..2] %> <%= post.created_at.day %></span>
+      </time>
+    </div>
+
+    <div class="hidden sm:block sm:basis-56">
+      <%= image_tag "cover.jpg", class: "aspect-square h-full w-full object-cover" %>
+    </div>
+
+    <div class="flex flex-1 flex-col justify-between">
+      <div class="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
+        <a href="#">
+          <h3 class="font-bold uppercase text-gray-900">
+            <%= post.title %>
+          </h3>
+        </a>
+
+        <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-700">
+          <%= post.content %>
+        </p>
+      </div>
+
+      <div class="sm:flex sm:items-end sm:justify-end">
+        <%= link_to "Read blog", blog_post_path(post), class: "block bg-blue-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-blue-400 rounded" %>
+      </div>
+    </div>
+  </article>
 <% end %>
+
+<hr>
+<div class="flex justify-center mt-4">
+  <%== pagy_nav(@pagy) %>
+</div>

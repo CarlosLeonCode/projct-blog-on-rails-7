@@ -1,3 +1,8 @@
-<h1>Edit blog post</h1>
+<div
+  class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8 shadow"
+>
+<h1 class="text-sm text-gray-700">Edit blog post</h1>
+
 <%= render partial: "form", locals: { blog_post: @blog_post } %>
-<%= button_to "Delete", @blog_post, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+<%= button_to "Delete", @blog_post, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "block bg-red-300 px-5 py-3 text-center text-xs font-bold uppercase transition hover:bg-red-400 rounded mt-2 w-full text-white" %>
+</div>

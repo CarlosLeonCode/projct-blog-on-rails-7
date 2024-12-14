@@ -1,3 +1,8 @@
-<h1>New blog post</h1>
-
+<div
+  class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8 shadow"
+>
+<h1 class="text-sm text-gray-700">New blog post</h1>
 <%= render partial: "form", locals: {blog_post: @blog_post } %>
+<%= link_to "Cancel", root_path, class: "block border-blue-100 border-2 px-5 py-3 text-center text-xs font-bold uppercase transition hover:bg-blue-100 rounded mt-2 text-blue-500" %>
+</div>
+
