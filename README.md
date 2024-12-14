@@ -23,5 +23,4 @@ web: bin/rails server
 css: bin/rails tailwindcss:watch
 ```
 
-
 ### find_each method

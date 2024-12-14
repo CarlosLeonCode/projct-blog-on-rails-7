@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-
   resources :blog_posts
+  get "/about", to: "landing#about"
 =begin
   resources it's a helper and create all routes below:
   # get "/blog_posts",            to: "blog_posts#index", as: :blog_posts
